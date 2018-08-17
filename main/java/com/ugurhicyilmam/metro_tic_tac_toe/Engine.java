@@ -109,8 +109,8 @@ public class Engine {
     private boolean shouldApplyMove(Move move) {
         int x = move.getX();
         int y = move.getY();
-        return x <= this.boardSize
-                && y <= this.boardSize
+        return x < this.boardSize
+                && y < this.boardSize
                 && board[x][y] == null;
     }
 

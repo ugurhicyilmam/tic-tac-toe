@@ -2,6 +2,7 @@ package com.ugurhicyilmam.metro_tic_tac_toe;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 
 class TicTacToe {
@@ -16,7 +17,7 @@ class TicTacToe {
             Engine ticTacToeEngine = new Engine(config);
             View consoleView = new View(ticTacToeEngine, config);
             consoleView.runGame();
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("File not found.");
         }
     }
