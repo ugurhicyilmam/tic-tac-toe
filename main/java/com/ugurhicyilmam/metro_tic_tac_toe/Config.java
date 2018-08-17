@@ -1,32 +1,21 @@
 package com.ugurhicyilmam.metro_tic_tac_toe;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 
 class Config {
 
     private String[] symbols;
     private int boardSize;
-    private Map<String, String> configInput;
+    private Properties configInput;
 
-    Config(String[] configuration) {
-        this.configInput = this.processConfig(configuration);
+    Config(Properties configuration) {
+        this.configInput = configuration;
         this.symbols = this.initSymbols();
         this.boardSize = this.initBoardSize();
     }
 
-    private Map<String, String> processConfig(String[] c) {
-        Map<String, String> configs = new HashMap<>();
-        for (int i = 0; i < c.length; i = i + 2) {
-            if (i % 2 == 0) {
-                configs.put(c[i], c[i + 1]);
-            }
-        }
-        return configs;
-    }
-
     private int initBoardSize() {
-        String size = this.configInput.getOrDefault("-s", "3");
+        String size = (String) this.configInput.getOrDefault("BOARD_SIZE", "3");
         try {
             return Integer.valueOf(size);
         } catch (Exception e) {
@@ -36,9 +25,9 @@ class Config {
 
     private String[] initSymbols() {
         String[] symbols = new String[3];
-        symbols[0] = this.configInput.getOrDefault("-p1", "a");
-        symbols[1] = this.configInput.getOrDefault("-p2", "b");
-        symbols[2] = this.configInput.getOrDefault("-p3", "c");
+        symbols[0] = (String) this.configInput.getOrDefault("P1_SYMBOL", "a");
+        symbols[1] = (String) this.configInput.getOrDefault("P2_SYMBOL", "b");
+        symbols[2] = (String) this.configInput.getOrDefault("AI_SYMBOL", "c");
         return symbols;
     }
 
